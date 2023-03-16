@@ -12,9 +12,11 @@
 //   });
 // }
 
+///////////////
 // SECTION 1 //
+///////////////
 
-let timesPerSecond = 10;
+let timesPerSecond = 8;
 let wait = false;
 
 const blob = document.querySelector('.blob');
@@ -53,4 +55,58 @@ blobContainer.onpointerleave = () => {
   }, 1000)
 }
 
+///////////////
+///////////////
+///////////////
+
+///////////////
+// SECTION 2 //
+///////////////
+
+const catContainer = document.querySelector('.section-02');
+const pupils = document.querySelectorAll('.pupil'); 
+
+const catPerimeter = document.querySelector('.cat-perimeter');
+const cat = document.querySelector('.cat');
+const catMad = document.querySelector('.cat-mad');
+
+catPerimeter.onmouseenter = () => {
+
+}
+
+catContainer.onpointermove = e => {
+  const { clientX, clientY } = e;
+  const rect = catContainer.getBoundingClientRect();
+
+  // const mouseX = clientX - rect.left;
+  // const mouseY = clientY - rect.top;
+  const x = ((clientX - rect.left) * 100) / rect.width;
+  const y = ((clientY - rect.top) * 100) / rect.height;
+  // console.log('mouseX = ', clientX, 'mouseY = ', clientY, 'rectWidth = ', rect.width, 'rectHeight = ', rect.height, x, y)
+
+  pupils.forEach(pupil => {
+    pupil.style.left = x + "%";
+    pupil.style.top = y + "%";
+  })
+
+  if ( x > 30 && x < 70 && y > 30 && y < 70 ) {
+    catMad.style.opacity = 1;
+    cat.style.opacity = 0;
+
+    pupils.forEach(pupil => {
+      pupil.classList.add('pupil-mad')
+    })
+    
+  } else {
+    catMad.style.opacity = 0;
+    cat.style.opacity = 1;
+
+    pupils.forEach(pupil => {
+      pupil.classList.remove('pupil-mad')
+    })
+  }
+}
+
+///////////////
+///////////////
 ///////////////
