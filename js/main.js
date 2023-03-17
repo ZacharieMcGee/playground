@@ -51,14 +51,8 @@ blobContainer.onpointerleave = () => {
 
 const catContainer = document.querySelector('.section-02');
 const pupils = document.querySelectorAll('.pupil'); 
-
-const catPerimeter = document.querySelector('.cat-perimeter');
 const cat = document.querySelector('.cat');
 const catMad = document.querySelector('.cat-mad');
-
-catPerimeter.onmouseenter = () => {
-
-}
 
 catContainer.onpointermove = e => {
   const { clientX, clientY } = e;
@@ -143,16 +137,15 @@ let rows = Math.floor(tilesContainer.clientHeight / tileSize);
 
 tilesContainer.style.setProperty("--columns", columns)
 tilesContainer.style.setProperty("--rows", rows)
-console.log('columns: ', columns, 'rows: ', rows)
 
-const colors = [
-  "rgb(229, 57, 53)",
-  "rgb(253, 216, 53)",
-  "rgb(244, 81, 30)",
-  "rgb(76, 175, 80)",
-  "rgb(33, 150, 243)",
-  "rgb(156, 39, 176)",
-]
+// const colors = [
+//   "rgb(229, 57, 53)",
+//   "rgb(253, 216, 53)",
+//   "rgb(244, 81, 30)",
+//   "rgb(76, 175, 80)",
+//   "rgb(33, 150, 243)",
+//   "rgb(156, 39, 176)",
+// ]
 
 let tilesToggled = false;
 
@@ -201,12 +194,20 @@ const resizeGrid = () => {
   tilesContainer.style.setProperty("--rows", rows)
 
   createTiles(columns * rows);
-  console.log('columns: ', columns, 'rows: ', rows)
 }
 
-window.onresize = () => resizeGrid();
+///////////////
+///////////////
+///////////////
 
+window.onresize = () => {
+  resizeGrid();
+  resizeTriangleGrid();
+};
 
+///////////////
+// SECTION 5 //
+///////////////
 
 ///////////////
 ///////////////

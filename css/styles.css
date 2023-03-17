@@ -187,17 +187,18 @@ section {
   font-family: 'Share Tech Mono', monospace;
 }
 
+@media screen and (min-width: 768px) {
+  .section-03 button {
+    font-size: 5em;
+  }
+}
+
 /* /////////////////// */
 
 
 
 
 /*///// SECTION 4 /////*/
-
-/* ::root {
-  --g1: rgb(98, 9 , 234);
-  --g2: rgb(236, 64, 122);
-} */
 
 .section-04 {
   background: linear-gradient(
@@ -221,6 +222,7 @@ section {
 }
 
 .tiles {
+  cursor: pointer;
   width: 100%;
   height: 100%;
 
@@ -241,5 +243,12 @@ section {
   position: absolute;
   inset: .5px;
 }
+/* /////////////////// */
+
+
+
+
+/*///// SECTION 5 /////*/
+
 
 /* /////////////////// */
