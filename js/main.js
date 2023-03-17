@@ -110,3 +110,39 @@ catContainer.onpointermove = e => {
 ///////////////
 ///////////////
 ///////////////
+
+///////////////
+// SECTION 3 //
+///////////////
+
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const BTNS_03 = document.querySelectorAll('.glitch-text');
+
+BTNS_03.forEach(btn => btn.onmouseover = e => {
+
+  let iterations = 0;
+
+  const glitchInterval = setInterval(() => {
+    e.target.innerText = e.target.innerText.split('')
+      .map((letter, idx) => {
+        if (idx < iterations) {
+          return e.target.dataset.value[idx]
+        }
+
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join('');
+     
+    if (iterations >= e.target.dataset.value.length) {
+      clearInterval(glitchInterval);
+    }
+    
+    iterations += 1 / 3;
+  }, 30) 
+});
+
+// const glitch = setInterval(() => {}, 100)
+
+///////////////
+///////////////
+///////////////
