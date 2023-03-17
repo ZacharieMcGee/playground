@@ -1,17 +1,3 @@
-// let detailBtns = document.getElementsByClassName('section-details_toggle');
-
-// for (let i=0; i < detailBtns.length; i++ ) {
-//   detailBtns[i].addEventListener('click', () => {
-//     if (!detailBtns[i].classList.contains('open')) {
-//       detailBtns[i].classList.add('open');
-//       detailBtns[i].nextElementSibling.classList.add('show')
-//     } else {
-//       detailBtns[i].classList.remove('open')
-//       detailBtns[i].nextElementSibling.classList.remove('show')
-//     }
-//   });
-// }
-
 ///////////////
 // SECTION 1 //
 ///////////////
@@ -141,7 +127,86 @@ BTNS_03.forEach(btn => btn.onmouseover = e => {
   }, 30) 
 });
 
-// const glitch = setInterval(() => {}, 100)
+///////////////
+///////////////
+///////////////
+
+///////////////
+// SECTION 4 //
+///////////////
+
+let tilesContainer = document.querySelector('.tiles');
+let tileSize = 50; // pixels L x H
+
+let columns = Math.floor(tilesContainer.clientWidth / tileSize);
+let rows = Math.floor(tilesContainer.clientHeight / tileSize);
+
+tilesContainer.style.setProperty("--columns", columns)
+tilesContainer.style.setProperty("--rows", rows)
+console.log('columns: ', columns, 'rows: ', rows)
+
+const colors = [
+  "rgb(229, 57, 53)",
+  "rgb(253, 216, 53)",
+  "rgb(244, 81, 30)",
+  "rgb(76, 175, 80)",
+  "rgb(33, 150, 243)",
+  "rgb(156, 39, 176)",
+]
+
+let tilesToggled = false;
+
+// let tileCount = -1;
+
+const handleTileOnClick = index => {
+  // tileCount = tileCount + 1;
+  tilesToggled = !tilesToggled;
+
+  anime({ 
+    targets: '.tile',
+    // backgroundColor: colors[tileCount % (colors.length - 1)],
+    opacity: tilesToggled ? 0 : 1,
+    delay: anime.stagger(50, {
+      grid: [columns, rows],
+      from: index
+    })
+  })
+}
+
+const createTile = index => {
+  const tile = document.createElement('div');
+
+  tile.classList.add('tile');
+
+  tile.onclick = e => handleTileOnClick(index);
+
+  return tile;
+}
+
+const createTiles = quantity => {
+  Array.from(Array(quantity)).map((tile, index) => {
+    tilesContainer.appendChild(createTile(index));
+  })
+}
+
+createTiles(columns * rows);
+
+const resizeGrid = () => {
+  tilesContainer.innerHTML = '';
+
+  columns = Math.floor(tilesContainer.clientWidth / tileSize);
+  rows = Math.floor(tilesContainer.clientHeight / tileSize);
+
+  tilesContainer.style.setProperty("--columns", columns)
+  tilesContainer.style.setProperty("--rows", rows)
+
+  createTiles(columns * rows);
+  console.log('columns: ', columns, 'rows: ', rows)
+}
+
+window.onresize = () => resizeGrid();
+
+
 
 ///////////////
 ///////////////
